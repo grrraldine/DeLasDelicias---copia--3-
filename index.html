@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">    <title>Tu Página</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="popup.css">
+    
+    <title>De Las Delicias</title>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar-left">
+            <h2>De las Delicias</h2>
+        </div>
+        <div class="navbar-right">
+            <div class="submenu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 28" fill="none" class="icon-bag" id="cart-button">
+                    <path d="M6 7C6 7 6 1 12 1C18 1 18 7 18 7M1 7V27H23V7H1Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="contador-shopping-cart" id="sumaCantidad"></p>
+
+            </div>
+            
+            <div id="submenu-content">
+                <div class="cont-carrito-compras">
+                    <table class="table-C">
+                        <thead class="thead-C">
+                            <tr class="tr-C">
+                                <th class="th-C">Producto</th>
+                                <th class="th-C">Precio</th>
+                                <th class="th-C">Cantidad</th>
+                                <th class="th-C">Subtotal</th>
+                                <th class="th-C"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="id-t-body">
+                            <tr>
+                                <td>
+                                    <div class="producto-C">
+                                        <p>Carrito Vacio</p>
+                                    </div>
+                                </td>
+                                <td>0.000</td>
+                                <td>
+                                    <div class="cantidad-C">
+                                        <button class="btn-popup menos" id="menos">-</button>
+                                        <p id="cantidad">0</p>
+                                        <button class="btn-popup mas" id="mas">+</button>
+                                    </div>
+                                </td>
+                                <td id="subtotal">0.000</td>
+                                <td>
+                                    <button class="borrar-C borrar" id="borrar">&#128465;</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th class="th-total-total"><p class="p-total-total">Total:</p></th>
+                                <th></th>
+                                <th></th>
+                                <th class="th-suma-total" id="total">00.000</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <!-- Icono de menú hamburguesa -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none" class="icon-menu">
+                <path d="M19.8571 0H1.14282C0.590538 0 0.142822 0.447716 0.142822 1V1.22222C0.142822 1.77451 0.590537 2.22222 1.14282 2.22222H19.8571C20.4094 2.22222 20.8571 1.77451 20.8571 1.22222V1C20.8571 0.447715 20.4094 0 19.8571 0Z" fill="black"/>
+                <path d="M19.8571 17.7778H1.14282C0.590538 17.7778 0.142822 18.2255 0.142822 18.7778V19C0.142822 19.5523 0.590537 20 1.14282 20H19.8571C20.4094 20 20.8571 19.5523 20.8571 19V18.7778C20.8571 18.2255 20.4094 17.7778 19.8571 17.7778Z" fill="black"/>
+              </svg>
+        </div>
+        
+    </nav>
+    <!-- BANNER -->
+    <section class="banner">
+        <h1>DELICIAS</h1>
+        <div class="banner-images">
+            <img src="assets/imagen1.png" alt="Imagen 1">
+            <img src="assets/imagen2.png" alt="Imagen 2">
+        </div>
+    </section>
+
+    <!-- BARRA -->
+    <div class="small-bar">
+        <span class="texto-carrusel">DELICIAS</span>
+        <span class="texto-carrusel">DELCIAS</span>
+        <span class="texto-carrusel">DELICIAS</span>
+        <span class="texto-carrusel">DELICIAS</span>         <span class="texto-carrusel">DELICIAS</span>
+        <span class="texto-carrusel">DELICIAS</span>         <span class="texto-carrusel">DELICIAS</span>
+        <span class="texto-carrusel">DELICIAS</span>         <span class="texto-carrusel">DELICIAS</span>         <span class="texto-carrusel">DELICIAS</span>
+        <span class="texto-carrusel">DELICIAS</span>         <span class="texto-carrusel">DELICIAS</span>
+        <span class="texto-carrusel">DELICIAS</span>         <span class="texto-carrusel">DELICIAS</span>         <span class="texto-carrusel">DELICIAS</span>
+        <span class="texto-carrusel">DELICIAS</span>         <span class="texto-carrusel">DELICIAS</span>
+        <span class="texto-carrusel">DELICIAS</span> 
+    </div>
+
+    <!-- SMALL BANNER -->
+    <div class="small-banner">
+        <div class="text-container">
+            <h3 class="title">Curaduría y Diseño de Creaciones Vivas</h3>
+            <p class="description">“... nos comprometemos a crear un refugio para aquellos que buscan más que objetos. De las delicias es un lugar para los que desean cultivar una estética que florezca, que inspire y que transforme el cotidiano en un arte viviente...”</p>
+            <div class="firma"><p class="final-text">MANIFIESTO VI</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SHOP SECTION-->
+    <main>
+        <section class="shop-section">
+
+        </section>
+    </main>
+
+    <!-- Texto e Imagen -->
+    <section class="text-image-section">
+        <div class="text-box2">
+            <p id="par-1">Micelio en las sombras</p>
+            <p id="par-2">hojas que no caen,</p>
+            <p id="par-3">delicias atrapadas</p>
+            <p id="par-4">al instante</p>
+        </div>
+        <div class="image-box">
+            <img src="assets/producto4.png" alt="Imagen de la Sección">
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <h2 class="footer-word">DELICIAS</h2>
+    </footer>
+
+    <script src="index.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>
