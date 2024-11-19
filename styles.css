@@ -139,14 +139,14 @@ nav {
     transition: all 0.4s ease;
 }
 .banner:hover .banner-images img:first-child {
-    transform: translateX(-45%) rotate(4.847deg);
+    transform: translateX(-59%) rotate(4.847deg);
 }
 
 
 
 .banner:hover .banner-images img:last-child {
-    right: -14%;
-    transform: rotate(-4.847deg);
+/*     right: -14%;
+ */    transform: translateX(59%) rotate(-4.847deg);
 }
 
 
@@ -361,14 +361,12 @@ nav {
     align-items: center;
     gap: 60px;
     aspect-ratio: 1 / 1;
-    padding-right: 2rem;
-
+    padding: 2rem 2rem 0 1.5rem;
 }
 
 /* PAR PAR*/
 .text-box2 p {
     margin: 0;
-    position: relative;
 }
 
 #par-1 {
