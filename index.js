@@ -1,22 +1,23 @@
-// PRIMERA PARTE: CREACION DE CARDS
+// PRIMERA PARTE: CREACIÓN DE CARDS
 
-//Array de productos
+// Array de productos
 const creaciones = [];
 
 // Clase principal Productos
 class Productos {
-    constructor(nombre, precio, img, cantidad) {
+    constructor(nombre, precio, img, cantidad, descripcion = "") {
         this.nombre = nombre;
         this.precio = precio;
         this.img = img;
         this.cantidad = cantidad;
+        this.descripcion = descripcion; // Nueva propiedad descripción
     }
 }
 
 // Clase ProductoEspecial con descuento. Herencia
 class ProductoEspecial extends Productos {
-    constructor(nombre, precio, img, cantidad, descuento) {
-        super(nombre, precio, img, cantidad);
+    constructor(nombre, precio, img, cantidad, descuento, descripcion = "") {
+        super(nombre, precio, img, cantidad, descripcion);
         this.descuento = descuento;
     }
     mostrarPrecioConDescuento() {
@@ -25,21 +26,17 @@ class ProductoEspecial extends Productos {
 }
 
 // Instancias de productos
-const creacion1 = new Productos("Semillas de Algarrobo", 3.00, "./assets/producto1.png", 1);
-const creacion2 = new ProductoEspecial("Biotextil Micelio", 60.00, "./assets/producto2.png", 1, 20); // Producto con descuento
-const creacion3 = new Productos("Vasija Gress III", 30.00, "./assets/producto32.png", 1);
+const creacion1 = new Productos("Semillas de Algarrobo", 3.00, "./assets/producto1.png", 1, "Semillas autoctonas");
+const creacion2 = new ProductoEspecial("Biotextil Micelio", 60.00, "./assets/producto2.png", 1, 20, "Biotextil a partir de micelio");
+const creacion3 = new Productos("Vasija Gress III", 30.00, "./assets/producto32.png", 1, "Vasija artesanal");
 
 // Agregar productos al array
 creaciones.push(creacion1, creacion2, creacion3);
 
-//MOSTRAR EN EL DOM
-// Selección del contenedor de tarjetas
+// Mostrar en el DOM
 const contenedorCards = document.querySelector('.shop-section');
 
-// Mostrar productos 
 creaciones.forEach(creacion => {
-
-// Si el producto es especial, mostrar precio con descuento y precio normal tachado, sino precio normal
     let precioHTML;
     if (creacion instanceof ProductoEspecial) {
         const precioConDescuento = creacion.mostrarPrecioConDescuento();
@@ -63,39 +60,38 @@ creaciones.forEach(creacion => {
     `;
 });
 
-// SEGUNDA PARTE: CREACION DE CARRITO DE COMPRAS
+// Delegación de eventos para los botones "Añadir al carrito"
+contenedorCards.addEventListener("click", function(event) {
+    if (event.target.classList.contains("btn-agregar-carrito")) {
+        const eventAbrirPopup = new CustomEvent('abrirCarrito');
+        window.dispatchEvent(eventAbrirPopup);
+    }
+});
+
+// SEGUNDA PARTE: CREACIÓN DE CARRITO DE COMPRAS
 
 const contenedorTBody = document.getElementById('id-t-body');
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || []; // Cargar carrito desde localStorage
 
-// Evento para agregar productos al carrito / Si el elemento en el que se hizo clic tiene la clase 'btn-agregar-carrito'
-
+// Evento para agregar productos al carrito
 contenedorCards.addEventListener("click", e => {
     if (e.target.classList.contains('btn-agregar-carrito')) {
-
-// La constante product guarda el elemento contenedor <div class="product-card">
-// permite acceder a él y a sus hijos (como el nombre y el precio)
-
         const product = e.target.parentElement;
         const nombreProducto = product.querySelector('h4').textContent;
-        
-        //ACCESO A PROPIEDADES ORIGINALES. 
-        // Encontrar el producto en el array `creaciones` para acceder a sus propiedades originales
         const productoOriginal = creaciones.find(p => p.nombre === nombreProducto);
-
-        // Determinar el precio del producto (con o sin descuento)
         const precioProducto = productoOriginal instanceof ProductoEspecial
             ? productoOriginal.mostrarPrecioConDescuento()
             : productoOriginal.precio;
-        
 
         const infoProduct = {
             cantidad: 1,
             nombre: nombreProducto,
-            precio: precioProducto
+            precio: precioProducto,
+            imagen: productoOriginal.img,
+            descripcion: productoOriginal.descripcion
         };
 
-        // Verificar si el producto ya está en el carrito
+// Verificar si el producto ya está en el carrito
         const exists = carrito.some(product => product.nombre === infoProduct.nombre);
 
         if (exists) {
@@ -109,61 +105,62 @@ contenedorCards.addEventListener("click", e => {
             carrito.push(infoProduct);
         }
 
+        guardarCarrito(); // Guardar el carrito en localStorage
         mostrarEnHTML();
     }
 });
 
-
-// TERCER PARTE: MOSTRAR EN HTML CARRITO DE COMPRAS
+// TERCERA PARTE: MOSTRAR EN HTML CARRITO DE COMPRAS
 
 const mostrarEnHTML = () => {
     contenedorTBody.innerHTML = ``;
     let total = 0;
 
-//Creacion de una fila por cada producto del carrito
     carrito.forEach(product => {
         const containerProduct = document.createElement('tr');
         containerProduct.classList.add('cart-product');
 
-//Calculo subtotal y total
         let subtotal = product.precio * product.cantidad;
         total += subtotal;
 
-//Insertar html en la fila creada
         containerProduct.innerHTML = `
             <td>
-                <div class="producto-C">
-                    <p id="nombrePlanta">${product.nombre}</p>
+                <div class="product-details">
+                    <div class="imgTexto">
+                        <img src="${product.imagen}" alt="${product.nombre}" class="product-thumbnail" />
+                        <div class="product-info">
+                            <p class="product-name">${product.nombre}</p>
+                            <p class="product-description">${product.descripcion}</p>
+                            <p class="product-price">Precio: $${product.precio}</p>
+                            <p class="product-subtotal">Subtotal: $${subtotal.toFixed(2)}</p>
+                        </div>
+                    </div>
+
+                    <div class="quantity-control">
+                        <div class="container-quantity">
+                            <button class="btn-popup" id="menos">-</button>
+                            <p id="cantidad">${product.cantidad}</p>
+                            <button class="btn-popup" id="mas">+</button>
+                        </div>
+                    </div>
+                    <button class="btn-popup" id="borrar">ELIMINAR</button>
                 </div>
-            </td>
-            <td id="precio">$${product.precio}</td>
-            <td>
-                <div class="cantidad-C" id="containerCantidad">
-                    <button class="btn-popup" id="menos">-</button>
-                    <p id="cantidad">${product.cantidad}</p>
-                    <button class="btn-popup" id="mas">+</button>
-                </div>
-            </td>
-            <td id="subtotal">$${subtotal}</td>
-            <td>
-                <button class="borrar-C" id="borrar">&#128465;</button>
             </td>
         `;
-        
-//Agregar fila al contenedor       
-        contenedorTBody.append(containerProduct);
 
-//Evento click boton menos y mas para restar o sumar
+        contenedorTBody.append(containerProduct);
 
         containerProduct.querySelector("#menos").addEventListener("click", () => {
             if (product.cantidad > 1) {
                 product.cantidad--;
+                guardarCarrito();
                 mostrarEnHTML();
             }
         });
 
         containerProduct.querySelector("#mas").addEventListener("click", () => {
             product.cantidad++;
+            guardarCarrito();
             mostrarEnHTML();
         });
 
@@ -172,13 +169,28 @@ const mostrarEnHTML = () => {
         });
     });
 
-    // Actualizar el total del carrito
     const totalCarrito = document.getElementById('total');
-    totalCarrito.textContent = `$${total}`; //template string permite insertar el valor de la var total en la cadena de texto
+    totalCarrito.textContent = `$${total.toFixed(2)}`;
+};
+
+// Función para guardar el carrito en localStorage
+const guardarCarrito = () => {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 };
 
 // Función para borrar un producto del carrito
 const borrarProducto = (nombreProducto) => {
     carrito = carrito.filter(product => product.nombre !== nombreProducto);
+    guardarCarrito();
     mostrarEnHTML();
 };
+
+// Evento para vaciar todo el carrito
+document.querySelector('.clear-cart').addEventListener('click', () => {
+    carrito = [];
+    guardarCarrito();
+    mostrarEnHTML();
+});
+
+// Mostrar el carrito al cargar la página
+mostrarEnHTML();

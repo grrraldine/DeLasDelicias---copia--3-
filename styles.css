@@ -2,7 +2,7 @@ body {
     overflow-x: hidden;
     background: #FEF9F5;
     margin: 0;
-    font-family: Arial, sans-serif; /* Usamos Arial por ahora como placeholder */
+    font-family: Arial, sans-serif; 
 }
 
 * {
@@ -17,9 +17,12 @@ nav {
     border: 1px solid #000;
     background: #FEF9F5;
     height: 8.125rem;
-    padding: 0 2rem; 
-    z-index: 999999;
+    padding: 0 0 0 2rem; 
+    z-index: 11;
     position: relative;
+    height: 14vh;
+    border-bottom: none;
+
 }
 
 .navbar-left h2 {
@@ -34,9 +37,11 @@ nav {
 
 .navbar-right {
     display: flex;
-    align-items: baseline;
-    gap: 1rem; 
-}
+    align-items: center;
+    height: 14vh;
+    width: 222px;
+    border-left: 1px solid black;
+  }
 
 .navbar-right i {
     display: flex;
@@ -55,14 +60,11 @@ nav {
 .icon-menu {
     width: 20.71px;
     height: 20px;
- /*    stroke: #000;
-    stroke-width: 5px; */
 }
+
+
 .navbar-right svg {
-    margin-left: 2rem;
-    cursor: pointer;
-    /*height: 1.5rem;  
-    font-weight: 800; */
+  cursor: pointer;
 }
 
 .icon-menu svg:hover {
@@ -78,76 +80,89 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 77.5vh;
 }
 
 .banner h1 {
     position: absolute;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /
+    transform: translate(-50%, -50%); 
     width: 129.875rem;
     height: 15.9375rem;
     text-align: center;
     color: #000;
-    font-family: "Bacasime Antique", serif;
-    font-size: 16.75rem;
+    font-family: "Bacasime Antique", serif;   
+    font-size: 21vw;
     font-weight: 400;
     line-height: normal;
     margin: 0;
     z-index: 1;
 }
 
+.img-sup {
+    display: none;
+}
+
 .banner-images {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 10; /* Aseguramos que las imágenes estén por encima del título y otras secciones */
+    z-index: 10; 
 }
+.banner-images-media-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+}
+
+.banner-images-media-screen img:first-child {
+    display: none;
+}
+.banner-images-media-screen img:last-child {
+    display: none;
+}
+
 
 .banner-images img:first-child {
     position: absolute;
-    left: -11%;
-    top: 5%;
-    width: 36.8rem;
-    height: 50rem;
-    transform: rotate(40.853deg);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    height: 66vh;
+    top: 13%;
+    
 }
 
 .banner-images img:last-child {
     position: absolute;
-    right: -10%;
-    width: 32.75rem;
-    height: 50rem;
-    transition: all 0.3s ease;
-    transform: rotate(-20.847deg);
-
+    right: 0;
+    height: 90vh;
+    transition: all 0.4s ease;
 }
-
 .banner:hover .banner-images img:first-child {
-    top: 0%;
-    left: -28%;
-    transform: rotate(30.853deg);
-    z-index: 0;
-    
-
+    transform: translateX(-45%) rotate(4.847deg);
 }
+
+
 
 .banner:hover .banner-images img:last-child {
-    right: -25%;
-    transform: rotate(-8.847deg);
-
+    right: -14%;
+    transform: rotate(-4.847deg);
 }
+
+
+
 
 /* SMALL BAR */
  .small-bar {
+    overflow: hidden; 
     height: 4.6875rem;
     border: 1px solid #000;
-    background: rgba(158, 4, 3, 0.72); /* Color con transparencia */
+    background: #AD3E39; 
     margin: 0 auto; 
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    height: 8.5vh;
 }
 .texto-carrusel {
     position: relative;
@@ -238,13 +253,11 @@ nav {
 /* CARDS CARDS CARDS */
 .product-card {
     width: 33.333%; 
-/*     height: 37.1875rem; 
- */    border: 1px solid #000; 
+    border: 1px solid #000; 
     background: #FEF9F5; 
     display: flex; 
     flex-direction: column; 
-/*     align-items: center;
- */    position: relative; 
+    position: relative; 
     overflow: hidden; 
     justify-content: center;
     aspect-ratio: 3 / 4;
@@ -304,7 +317,7 @@ nav {
     padding: 15px;
     font-weight: 500;
     color: #000000;
-    transition: all 0.2s ease; /* Transición suave para el efecto */
+    transition: all 0.2s ease; 
 }
 .product-card:active button{
     transform: scale(0.95); 
@@ -331,10 +344,10 @@ nav {
 .text-image-section {
     display: flex;
     width: 100%;
+    
 }
 
 .text-box2 {
-    height: 40rem;
     width: 50%;
     border: 1px solid #000;
     color: #000;
@@ -347,11 +360,15 @@ nav {
     position: relative;
     align-items: center;
     gap: 60px;
+    aspect-ratio: 1 / 1;
+    padding-right: 2rem;
+
 }
 
 /* PAR PAR*/
 .text-box2 p {
     margin: 0;
+    position: relative;
 }
 
 #par-1 {
@@ -366,6 +383,48 @@ nav {
 #par-4 {
     transform: translateX(105%);
 }
+#par-1 {
+    transform: translateX(-10%) rotate(4deg);
+}
+#par-2 {
+    transform: translateX(20%) rotate(-4deg);
+}
+#par-3 {
+    transform: translateX(-30%) rotate(4deg);
+    /* transform: rotate(4deg); */
+}
+
+#par-4 {
+    transform: translateX(100%) rotate(10deg);
+    animation: move 3s infinite ease-in-out, rotate 4s infinite ease-in-out;
+    white-space: nowrap;
+}
+
+/*  @keyframes move {
+    0% {
+        top: 0%;
+        left: 0%;
+        
+    }
+    25% {
+        top: 15%;
+        left: 0;
+    }
+    50% {
+        top: 0%;
+        left: 0%;
+    }
+    5% {
+        top: 0;
+        left: 0%;
+    }
+    100% {
+        top: 0;
+        left: 0;
+    }
+} 
+
+ */
 
 /* IMG */
 .image-box {
@@ -376,6 +435,8 @@ nav {
     position: relative;
     border: 1px solid #000;
     background: #FEF9F5;
+    aspect-ratio: 1 / 1;
+
 }
 
 .image-box img {
@@ -388,7 +449,7 @@ nav {
 .footer {
     border:#000 2px solid;
     height: 33.125rem;
-    background: #B94947;
+    background: #AD3E39;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -399,39 +460,77 @@ nav {
     color: #000;
     text-align: center;
     font-family: "Bacasime Antique";
-    font-size: 16rem;
+    font-size: 20vw;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     margin: 0;
 }
+@media screen and (max-width: 1440px) {
+    .banner h1 {
+        top: 50%;
+        font-size: 20vw;        
+}
+
+}
 
 @media screen and (max-width: 1000px) {
     .banner h1 {
         height:auto;
+        z-index: 2;
+    }
+    .img-sup {
+        display: block;
     }
 
-    .banner-images img:last-child {
-        right: -23%;
-    }
-    .banner-images img:first-child {
+    .banner-images-media-screen img:first-child {
+        display: block;
         position: absolute;
-        left: -29%;
-        top: 3%;
-    }
+        transition: all 0.4s ease;
+        height: 36vh;
+        top: 58%;
+        z-index: 1;
+      }
 
-    .banner:hover .banner-images img:first-child {
+      .sup1 {
+        display: block;
+        position: absolute;
+        right: 0%;
+        height: 34vh;
         top: 0%;
-        left: -48%;
-        transform: rotate(30.853deg);
-        z-index: 0;
+        transition: all 0.4s ease;
+        z-index: 1;
+/*         transform: scaleX(-1);
+ */      }
+
+      .sup2 {
+        display: block;
+        position: absolute;
+        transition: all 0.4s ease;
+        height: 39vh;
+        top: -1%;
+        left: 0%;;
+        z-index: 1;
+/*         transform: scaleX(-1);
+ */  }
+      .banner-images-media-screen img:last-child {
+        display: block;
+        position: absolute;
+        right: 0%;
+        height: 37vh;
+        top: 57%;
+        transition: all 0.4s ease;
+        z-index: 1;
+      }
+   .banner-images img:last-child {
+        display: none;
+
     }
 
-    .banner:hover .banner-images img:last-child{
-        right: -50%;
-        transform: rotate(-8.847deg);
-    }
-
+    .banner-images img:first-child {
+        display: none;
+      
+    } 
 
     .shop-section {
         display: flex;
@@ -455,17 +554,14 @@ nav {
         aspect-ratio: 1 / 1;
     }
 
-    .banner h1 {
-        font-size: calc(10rem - 1vw); 
-    }
-    .footer-word
-    {
-        font-size: calc(10rem - 1vw); 
-    }
 }
 
 
 @media screen and (max-width: 700px) {
+    .navbar-left h2 {
+        height:auto;
+        font-size:1.3rem;
+    }
     .banner {
         height: 75vh;
     }
@@ -474,29 +570,26 @@ nav {
         height:auto;
     }
 
-    .banner-images img:last-child {
-        width: 25rem;
-        height: auto;
-        right: -30%;
-    }
-    .banner-images img:first-child {
-        width: 25rem;
-        height: auto;
-        position: absolute;
-        left: -35%;
-        top: 3%;
+    .banner-images-media-screen img:first-child {
+        height: 33vh;
+        left: -2%;
+        top: 60%;      
     }
 
-    .banner:hover .banner-images img:first-child {
-        top: 0%;
-        left: -48%;
-        transform: rotate(30.853deg);
-        z-index: 0;
-    }
+      .sup1 {
+        height: 33vh;
+        right: -3%;
+        }
 
-    .banner:hover .banner-images img:last-child{
-        right: -50%;
-        transform: rotate(-8.847deg);
+      .sup2 {
+        height: 34vh;
+
+     }
+      .banner-images-media-screen img:last-child {
+        height: 35vh;
+        transform: rotate(-03deg);
+        right: -2%;
+        top: 60%;
     }
 
     .text-container{
@@ -523,12 +616,4 @@ nav {
         aspect-ratio: 1 / 1;
         padding: 2rem;
     }
-    .banner h1 {
-        font-size: calc(6rem - 1vw); 
-    }
-    .footer-word
-    {
-        font-size: calc(6rem - 1vw); 
-    }
-
 }
