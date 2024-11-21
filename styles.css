@@ -204,7 +204,7 @@ nav {
 /* Definición de la animación de desplazamiento horizontal */
 @keyframes scroll-horizontal {
     0% {
-        left: 0%
+        left: 0%;
     }
     100% {
         left: -100%; 
@@ -467,7 +467,7 @@ nav {
 @media screen and (max-width: 1440px) {
     .banner h1 {
         top: 50%;
-        font-size: 20vw;        
+        font-size: 19vw;        
 }
 
 }
